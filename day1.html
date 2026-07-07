@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Name:</label>
+    <input  id="inputField" type ="text" placeholder="name">
+    <button onclick="handleClick()">submit</button>
+    <p id="displayName"></p>
+    <button class="dark-light active"></button>
+    <script>
+        function handleClick(){
+            const val = document.getElementById("inputField").value;
+            document.getElementById("displayName").innerText = `hello ${val}`;
+        }
+    </script>
+</body>
+</html>
