@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+    <div class="registration-form">
+        <h1 class="title">registration form</h1>
+        <label class="student-detail">Student name: <input type="text" placeholder="enter here"></label><br/>
+        <label class="student-detail">Student email: <input type="email" placeholder="enter here"></label><br/>
+        <label class="student-detail">Student age: <input type="text" placeholder="enter here"></label><br/>
+        <div class="course">
+            Select course:
+            <select>
+                <option>IT</option>
+                <option>cse</option>
+                <option>AIDS</option>
+            </select>
+        </div>
+        <div class="gender">
+            Gender:    
+            <label><input type="radio" name="gender"/>Male</label>
+            <label><input type="radio" name="gender"/>female</label>
+        </div>
+        <div class="hobbies">
+            Hobbies: 
+            <label><input type="checkbox" value="football">football</label>
+            <label><input type="checkbox" value="cricket">cricket</label>
+            <label><input type="checkbox" value="drawing">drawing</label>
+        </div>
+        <div class="button-wrap"><button class="button">Submit</button></div>
+    </div>
+    </div>
+</body>
+<style>
+    *{
+        margin: 0;
+        font-style: italic;
+    }
+    .wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100dvh;
+        background-color: rgb(179, 184, 186);
+    }
+    .registration-form{
+        background-color: rgb(184, 184, 216);
+        padding: 30px;
+        border: 2px solid black;
+        border-radius: 15%;
+        height: 400px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .title{
+        margin-bottom: 25px;
+        margin-top:0px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 25px;
+    }
+    .student-detail{
+        font-size: 18px;
+        margin: 1px;
+    }
+    .student-detail input{
+        width: 250px;
+    }
+    .course{
+        margin-bottom: 15px ;
+        
+    }
+    .gender{
+        margin-bottom: 15px ;
+    }
+    .gender label{
+        margin: 10px;
+        
+    }
+    .hobbies{
+        margin-bottom: 15px ;
+    }
+    .hobbies label{
+        margin : 10px;
+    }
+    .button-wrap{
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .button{
+        width: 200px;
+        font-size: 20px;
+        font-weight: 500;
+        border-radius: 10px;
+        border: none;
+        background-color: azure;
+        margin-top: 25px;
+        height: 30px;
+    }
+</style>
+</html>
