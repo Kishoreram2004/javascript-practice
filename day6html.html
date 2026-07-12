@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type = "text" placeholder="enter task" id="inputField"/>
+        <button id="addTask">add</button>
+        <div id="display">
+            
+        </div>
+    </div>
+    <script>
+        const taskList = []
+        document.getElementById("addTask").addEventListener("click", ()=>{
+            if(document.getElementById("inputField").value =="") return;
+            taskList.push({
+                task: document.getElementById("inputField").value,
+                completed: false
+            })
+            render();
+            
+        })
+        function render(){
+            document.getElementById("display").innerHTML="";
+            taskList.forEach((t,index)=>(
+                document.getElementById("display").innerHTML+=`<div>${t.task}</div><button class='deleteBtn' data-index="${index}">delete</button>`
+            ))
+        }
+        document.getElementById("display").addEventListener("click",(e)=>{
+            if(e.target.classList.contains("deleteBtn")){const index = e.target.dataset.index;
+            taskList.splice(index, 1);
+            render();}
+        })
+        
+        
+    </script>
+</body>
+</html>
+
+
+
