@@ -1,0 +1,47 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="display"></div>
+    </body>
+    <script>
+        const students = [
+            {
+                name:"kishore",
+                marks:[100,99,98]
+            },
+            {
+                name:"ram",
+                marks:[100,77,98]
+            },
+            {
+                name:"aswin",
+                marks:[100,99,98]
+            }
+        ]
+        const report = students.map(s=>{
+            const total = s.marks.reduce((sum, curr)=> sum+curr , 0);
+            const avg = total/s.marks.length;
+            return{
+                name: s.name,
+                total,
+                avg,
+                result: total>=150? "pass": "fail" 
+            }
+        })
+
+        report.forEach(s=>{
+            document.getElementById("display").innerHTML+=`
+                <div>${s.name}</div>
+                <div>total: ${s.total}</div>
+                <div>avg: ${s.avg.toFixed(2)}</div>
+                <div>result: ${s.result}</div>
+                <br></br>
+            `
+        })
+    </script>
+    </html>
