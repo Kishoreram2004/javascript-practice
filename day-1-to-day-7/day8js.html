@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="displayQuote"></div>
+    <div id="displayauth"></div>
+    <div id="Loading"></div>
+    <button id="click">click</button>
+    <script>
+        document.getElementById("click").addEventListener("click",async()=>{
+            const random = Math.floor(Math.random()*25)+1;
+            console.log(random)
+            const res = await fetch("https://dummyjson.com/quotes");
+            const data = await res.json();
+            const q = data.quotes;
+            
+            const rand = q.find(s=> s.id == random);
+            document.getElementById("displayQuote").innerText = rand.quote;
+            document.getElementById("displayauth").innerText = rand.author;   
+        })
+    </script>
+</body>
+</html>
