@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            width:400px;
+            margin:40px auto;
+        }
+
+        input{
+            padding:8px;
+            margin:5px;
+        }
+
+        button{
+            padding:8px 12px;
+            cursor:pointer;
+        }
+
+        .expense{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin:10px 0;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        #displayTotal{
+            font-size:20px;
+            font-weight:bold;
+            margin:20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Expense Tracker</h2>
+
+<input
+    type="text"
+    id="used"
+    placeholder="Expense Name">
+
+<input
+    type="number"
+    id="amount"
+    placeholder="Amount">
+
+<button id="btn">Add Expense</button>
+
+<h3>Total: ₹<span id="displayTotal">0</span></h3>
+
+<div id="displayExp"></div>
+
+<script>
+
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+function saveData(){
+
+    localStorage.setItem(
+        "expenses",
+        JSON.stringify(expenses)
+    );
+
+}
+
+function displayExpenses(){
+
+    const display = document.getElementById("displayExp");
+
+    display.innerHTML = "";
+
+    let total = 0;
+
+    expenses.forEach((expense,index)=>{
+
+        total += expense.amount;
+
+        display.innerHTML += `
+            <div class="expense">
+
+                <span>
+                    ${expense.name}
+                </span>
+
+                <span>
+                    ₹${expense.amount}
+                </span>
+
+                <button onclick="deleteExpense(${index})">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+    });
+
+    document.getElementById("displayTotal").innerText = total;
+
+}
+
+function deleteExpense(index){
+
+    expenses.splice(index,1);
+
+    saveData();
+
+    displayExpenses();
+
+}
+
+document
+.getElementById("btn")
+.addEventListener("click",()=>{
+
+    const name =
+        document.getElementById("used").value.trim();
+
+    const amount =
+        Number(document.getElementById("amount").value);
+
+    if(name==="" || amount<=0){
+
+        alert("Enter valid expense!");
+
+        return;
+
+    }
+
+    expenses.push({
+
+        name:name,
+
+        amount:amount
+
+    });
+
+    saveData();
+
+    displayExpenses();
+
+    document.getElementById("used").value="";
+
+    document.getElementById("amount").value="";
+
+});
+
+displayExpenses();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="loading"></div>
+    <div id="displayQuote"></div>
+    <div id="displayAuth"></div>
+    <button id="submitBtn">Random Quote</button>
+    <script>
+        let quotes = [];
+        async function loadQuotes(){
+            const loading = document.getElementById("loading")
+            loading.innerText= "Loading";
+            try{
+                const res = await fetch("https://dummyjson.com/quotes");
+                const data = await res.json();
+                quotes = data.quotes;
+                loading.innerText = "";
+                randomQuote();
+            }catch(e){
+                loading.innerText ="failed to loadQuote";
+                console.log(e);
+            }
+        }
+        function randomQuote(){
+            if(quotes.length==0) return;
+            const random = Math.floor(Math.random()*quotes.length);
+            document.getElementById("displayQuote").innerText = quotes[random].quote;
+            document.getElementById("displayAuth").innerText = quotes[random].author;
+
+        }
+
+        document.getElementById("submitBtn").addEventListener("click", randomQuote);
+        loadQuotes();
+    </script>
+</body>
+</html>
